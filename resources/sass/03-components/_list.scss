@@ -1,0 +1,178 @@
+$triangleWidth: 20px;
+.list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-item{
+    width: calc(33.3333333% - calc(2rem / 3));
+    margin: 1rem 0;
+    &:nth-of-type(3n+0){
+        margin: 1rem;
+    }
+}
+.list-item__image{
+    width:100%;
+    height: auto;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+}
+.list-item__link{
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.list-item-description{
+    display: none;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    margin: 1rem -1rem;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0, .075), 0 -.125rem .25rem rgba(0,0,0, .075);
+    position:relative;
+    &:before{
+        content:"";
+        width: 0;
+        height: 0;
+        border-left: $triangleWidth solid transparent;
+        border-right: $triangleWidth solid transparent;
+        border-bottom: $triangleWidth solid $grey-color;
+        position: absolute;
+        top: -$triangleWidth;
+    }
+    &--left:before{
+        left: calc(calc(33.3333333% / 2) - $triangleWidth / 2);
+    }
+    &--center:before{
+        left: calc(50% - $triangleWidth / 2);
+    }
+    &--right:before{
+        right: calc(calc(33.3333333% / 2) - $triangleWidth / 2);
+    }
+}
+.list-item-description__image{
+    width: calc(40% - calc(0.75rem / 2));
+    height: auto;
+    aspect-ratio: 1/1;
+}
+.list-item-description-text {
+    width: calc(60% - calc(0.75rem / 2));
+    position: relative;
+}
+.list-item-description-text__title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+.list-item-rating{
+    display: inline-flex;
+    margin-bottom: 0.25rem;
+}
+.list-item-rating__score{
+    color: #ffffff;
+    padding: 0.25rem;
+    border-radius: 3px;
+    line-height:1;
+    margin-right: 0.25rem;
+    &--high{
+        background-color: $success-color;
+    }
+    &--middle{
+        background-color: $warning-color;
+    }
+    &--low{
+        background-color: $danger-color;
+    }
+}
+.list-item-rating__sums{
+    color: $grey-color;
+}
+
+.list-item-description-text__address{
+    font-weight: 500;
+}
+.list-item-description-text__review{
+    font-style: italic;
+    font-weight:400;
+    margin-bottom: 0.5rem;
+}
+.list-item-description-text__reviewer-name{
+    color: $grey-color;
+    font-size: 0.75rem;
+}
+.list-item-details{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.list-item-details__text{
+    line-height: 1.4;
+}
+.list-item-details__link{
+    width: 40%;
+}
+.list-item-description__close{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width:20px;
+    height:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:transparent;
+    border:none;
+    outline:none;
+    i{
+        font-size:1.5rem;
+    }
+}
+
+@media screen and (width < 992px){
+    .list{
+        display: block;
+    }
+    .list-item{
+        width: 100%;
+        margin: 1rem 0;
+        &:nth-of-type(3n+0){
+            margin: 1rem 0;
+        }
+    }
+    .list-item__image{
+        aspect-ratio: 16/9;
+    }
+    .list-item-description{
+        flex-direction: column;
+        padding: 0.5rem;
+        margin: 1rem 0;
+        &--left:before{
+            left: calc(50% - $triangleWidth / 2);
+        }
+        &--center:before{
+            left: calc(50% - $triangleWidth / 2);
+        }
+        &--right:before{
+            left: calc(50% - $triangleWidth / 2);
+        }
+    }
+    .list-item-description__image{
+        width: 100%;
+    }
+    .list-item-description-text{
+        width: 100%;
+    }
+    .list-item-description__close{
+        top:0;
+        right: 0;
+        background-color: $white-color;
+    }
+}
+// Show description logic
+.list-item{
+    &--active + .list-item-description{
+        display: flex;
+
+    }
+}
